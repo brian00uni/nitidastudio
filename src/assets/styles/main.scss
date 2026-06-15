@@ -1,0 +1,22 @@
+// Entry stylesheet — gathers every partial.
+
+// Base (reset + globals)
+@use 'base/reset';
+@use 'base/base';
+
+// Shared UI
+@use 'components/ui';
+
+// Components
+@use 'components/header';
+@use 'components/hero';
+@use 'components/mission';
+@use 'components/technology';
+@use 'components/features';
+@use 'components/stats';
+@use 'components/news';
+@use 'components/contact';
+@use 'components/footer';
+
+// Pages
+@use 'pages/home';

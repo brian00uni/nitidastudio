@@ -1,0 +1,40 @@
+// Design tokens
+
+// Colors
+$color-bg: #ffffff;
+$color-surface: #fafafa; // zinc-50
+$color-text: #18181b; // zinc-900
+$color-text-soft: #3f3f46; // zinc-700
+$color-muted: #71717a; // zinc-500
+$color-faint: #a1a1aa; // zinc-400
+$color-border: #e4e4e7; // zinc-200
+$color-dark: #18181b; // zinc-900
+$color-darker: #09090b; // zinc-950
+
+$color-accent: #7c3aed; // violet-600
+$color-accent-dark: #6d28d9; // violet-700
+$color-accent-soft: #f5f3ff; // violet-50
+$color-accent-faint: #ddd6fe; // violet-200/300
+
+// Typography
+$font-sans: 'Pretendard', system-ui, -apple-system, 'Segoe UI', Roboto,
+  'Helvetica Neue', sans-serif;
+$font-mono: ui-monospace, 'SFMono-Regular', Consolas, monospace;
+
+// Layout
+$container-max: 80rem; // 1280px
+$container-pad: 1.5rem; // 24px
+$radius: 1rem;
+$radius-sm: 0.75rem;
+$radius-full: 999px;
+
+// Breakpoints
+$bp-sm: 640px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+
+// Effects
+$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+$transition: 0.3s ease;

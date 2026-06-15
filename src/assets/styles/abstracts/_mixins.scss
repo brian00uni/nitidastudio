@@ -1,0 +1,44 @@
+@use 'variables' as *;
+
+// Responsive: min-width media query
+@mixin respond($bp) {
+  @if $bp == sm {
+    @media (min-width: $bp-sm) {
+      @content;
+    }
+  } @else if $bp == md {
+    @media (min-width: $bp-md) {
+      @content;
+    }
+  } @else if $bp == lg {
+    @media (min-width: $bp-lg) {
+      @content;
+    }
+  }
+}
+
+// Centered max-width container
+@mixin container {
+  width: 100%;
+  max-width: $container-max;
+  margin-inline: auto;
+  padding-inline: $container-pad;
+}
+
+// Vertical section rhythm
+@mixin section-padding {
+  padding-block: 6rem;
+
+  @include respond(sm) {
+    padding-block: 8rem;
+  }
+}
+
+// Eyebrow / kicker label
+@mixin eyebrow {
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: $color-accent;
+}

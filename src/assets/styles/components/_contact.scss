@@ -1,0 +1,53 @@
+@use '../abstracts' as *;
+
+.contact {
+  position: relative;
+  overflow: hidden;
+  background: $color-accent;
+  color: #fff;
+  text-align: center;
+  padding-block: 7rem;
+
+  @include respond(sm) {
+    padding-block: 9rem;
+  }
+
+  &__inner {
+    max-width: 56rem;
+    margin-inline: auto;
+    padding-inline: $container-pad;
+  }
+
+  &__eyebrow {
+    @include eyebrow;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 1.5rem;
+  }
+
+  &__title {
+    font-size: 1.875rem;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    white-space: pre-line;
+
+    @include respond(sm) {
+      font-size: 3rem;
+    }
+  }
+
+  &__desc {
+    max-width: 36rem;
+    margin: 1.5rem auto 0;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+
+    @include respond(sm) {
+      font-size: 1.125rem;
+    }
+  }
+
+  &__cta {
+    margin-top: 2.5rem;
+    color: $color-accent-dark;
+  }
+}

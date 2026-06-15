@@ -1,0 +1,22 @@
+@use '../abstracts' as *;
+
+body {
+  font-family: $font-sans;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: $color-text;
+  background: $color-bg;
+}
+
+code {
+  font-family: $font-mono;
+  font-size: 0.85em;
+  padding: 0.15em 0.4em;
+  border-radius: 0.3rem;
+  background: $color-surface;
+}
+
+::selection {
+  background: $color-accent;
+  color: #fff;
+}

@@ -1,0 +1,106 @@
+@use '../abstracts' as *;
+
+.news {
+  background: $color-surface;
+  @include section-padding;
+
+  &__inner {
+    @include container;
+  }
+
+  &__head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+  }
+
+  &__more {
+    display: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: $color-accent;
+
+    @include respond(sm) {
+      display: block;
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr;
+
+    @include respond(sm) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include respond(lg) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 1.25rem;
+    box-shadow: $shadow-sm;
+    transition: box-shadow $transition;
+
+    &:hover {
+      box-shadow: $shadow-lg;
+    }
+
+    img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      transition: transform 0.7s ease;
+    }
+
+    &:hover img {
+      transform: scale(1.05);
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 1.5rem;
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.75rem;
+    color: $color-faint;
+  }
+
+  &__tag {
+    padding: 0.25rem 0.6rem;
+    font-weight: 600;
+    color: $color-accent;
+    background: $color-accent-soft;
+    border-radius: $radius-full;
+  }
+
+  &__title {
+    font-size: 1.125rem;
+    line-height: 1.35;
+    color: $color-text;
+    transition: color $transition;
+
+    .news__card:hover & {
+      color: $color-accent;
+    }
+  }
+}

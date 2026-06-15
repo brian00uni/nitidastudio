@@ -1,0 +1,38 @@
+@use '../abstracts' as *;
+
+.stats {
+  background: $color-dark;
+  color: #fff;
+  padding-block: 5rem;
+
+  &__inner {
+    @include container;
+    display: grid;
+    gap: 2.5rem;
+    grid-template-columns: repeat(2, 1fr);
+
+    @include respond(lg) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  &__item {
+    text-align: center;
+  }
+
+  &__value {
+    font-size: 2.25rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+
+    @include respond(sm) {
+      font-size: 3rem;
+    }
+  }
+
+  &__label {
+    margin-top: 0.75rem;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+}

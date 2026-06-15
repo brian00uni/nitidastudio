@@ -1,0 +1,73 @@
+@use '../abstracts' as *;
+
+.container {
+  @include container;
+}
+
+.eyebrow {
+  @include eyebrow;
+}
+
+// Shared section heading block
+.section-head {
+  max-width: 42rem;
+  margin-bottom: 4rem;
+
+  &__eyebrow {
+    @include eyebrow;
+    margin-bottom: 1rem;
+  }
+
+  &__title {
+    font-size: 1.875rem;
+    letter-spacing: -0.02em;
+    color: $color-text;
+
+    @include respond(sm) {
+      font-size: 2.25rem;
+    }
+  }
+}
+
+// Buttons
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: $radius-full;
+  transition: background $transition, color $transition, transform 0.15s ease;
+
+  &:active {
+    transform: scale(0.97);
+  }
+
+  &--primary {
+    background: $color-accent;
+    color: #fff;
+
+    &:hover {
+      background: $color-accent-dark;
+    }
+  }
+
+  &--light {
+    background: #fff;
+    color: $color-text;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.9);
+    }
+  }
+
+  &--ghost {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #fff;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+}

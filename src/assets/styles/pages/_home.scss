@@ -1,0 +1,7 @@
+@use '../abstracts' as *;
+
+.home {
+  min-height: 100svh;
+  background: $color-bg;
+  color: $color-text;
+}
