@@ -1,0 +1,136 @@
+@use '../abstracts' as *;
+
+// nitida — brand identity band shown after Projects. Essence statement plus
+// the three core values, on a deep dark ground. Each block reveals (fade +
+// slide up + de-blur) and the reveal replays on re-entry (useInView).
+.nitida {
+  background: $color-darker;
+  color: #fff;
+  // @include section-padding;
+  padding-block: 4rem;
+
+
+  &__inner {
+    @include container;
+  }
+
+  // Brand essence header
+  &__essence {
+    max-width: 48rem;
+    margin-bottom: 2rem;
+  }
+
+  &__eyebrow {
+    @include eyebrow;
+    color: rgba(255, 255, 255, 0.55);
+    margin-bottom: 1.25rem;
+  }
+
+  &__tagline {
+    --d: 100ms;
+    font-size: clamp(2.25rem, 6vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: #fff;
+  }
+
+  &__lead {
+    --d: 200ms;
+    margin-top: 1.5rem;
+    font-size: 1.0625rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.65);
+  }
+
+  // Three core values
+  &__values {
+    display: grid;
+    gap: 2.5rem;
+    grid-template-columns: 1fr;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+
+    @include respond(sm) {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem 3rem;
+    }
+  }
+
+  &__value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: #fff;
+
+    @include respond(sm) {
+      font-size: 3rem;
+    }
+  }
+
+  &__label {
+    margin-top: 0.85rem;
+  }
+
+  &__ko {
+    display: block;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  &__desc {
+    margin-top: 0.6rem;
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  // ── Reveal: hidden until the section scrolls into view, replays on re-entry.
+  // Each block uses its own --d for stagger; the label trails its value by
+  // ~0.22s within an item.
+  &__eyebrow,
+  &__tagline,
+  &__lead,
+  &__value,
+  &__label {
+    opacity: 0;
+    transform: translateY(1.5rem);
+    filter: blur(4px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+      filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: var(--d, 0ms);
+  }
+
+  &__label {
+    transition-delay: calc(var(--d, 0ms) + 0.22s);
+  }
+
+  &__inner.is-visible {
+
+    .nitida__eyebrow,
+    .nitida__tagline,
+    .nitida__lead,
+    .nitida__value,
+    .nitida__label {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+
+    &__eyebrow,
+    &__tagline,
+    &__lead,
+    &__value,
+    &__label {
+      opacity: 1;
+      transform: none;
+      filter: none;
+      transition: none;
+    }
+  }
+}

@@ -6,14 +6,18 @@
 
 // Shared UI
 @use 'components/ui';
+@use 'components/reveal';
 
 // Components
 @use 'components/header';
 @use 'components/hero';
+@use 'components/marquee';
 @use 'components/mission';
-@use 'components/technology';
-@use 'components/features';
+@use 'components/about';
+@use 'components/skills';
+@use 'components/projects';
 @use 'components/stats';
+@use 'components/nitida';
 @use 'components/news';
 @use 'components/contact';
 @use 'components/footer';

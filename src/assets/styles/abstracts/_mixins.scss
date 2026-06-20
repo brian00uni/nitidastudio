@@ -2,15 +2,19 @@
 
 // Responsive: min-width media query
 @mixin respond($bp) {
-  @if $bp == sm {
+  @if $bp ==sm {
     @media (min-width: $bp-sm) {
       @content;
     }
-  } @else if $bp == md {
+  }
+
+  @else if $bp ==md {
     @media (min-width: $bp-md) {
       @content;
     }
-  } @else if $bp == lg {
+  }
+
+  @else if $bp ==lg {
     @media (min-width: $bp-lg) {
       @content;
     }
@@ -37,8 +41,8 @@
 // Eyebrow / kicker label
 @mixin eyebrow {
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.1em;
   color: $color-accent;
 }

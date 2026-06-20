@@ -1,0 +1,38 @@
+@use '../abstracts' as *;
+
+// Scroll-reveal utility — fades & slides up when `.is-visible` is added.
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  will-change: opacity, transform;
+
+  &.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+// Stats-style variant — adds a de-blur and replays on each re-entry. The
+// component swaps in a re-observing hook; the blur is layered on here.
+.reveal--replay {
+  filter: blur(6px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform, filter;
+
+  &.is-visible {
+    filter: blur(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal--replay {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+}

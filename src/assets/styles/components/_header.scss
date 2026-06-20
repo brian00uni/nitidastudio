@@ -23,9 +23,23 @@
   }
 
   &__brand {
-    font-size: 1.25rem;
-    font-weight: 600;
-    letter-spacing: 0.2em;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  &__logo {
+    display: block;
+    height: 4rem;
+    width: auto;
+    // Over the hero (un-scrolled): render the two-tone logo as solid white
+    // for contrast against the blue background.
+    filter: brightness(0) invert(1);
+    transition: filter $transition;
+  }
+
+  &--scrolled &__logo {
+    // Back on a light background: show the original brand colors.
+    filter: none;
   }
 
   &__nav {
@@ -40,8 +54,8 @@
 
   &__link {
     font-size: 0.875rem;
-    font-weight: 500;
-    opacity: 0.8;
+    font-weight: 800;
+    opacity: 0.5;
     transition: opacity $transition;
 
     &:hover {

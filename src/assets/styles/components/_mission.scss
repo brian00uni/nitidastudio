@@ -1,46 +1,152 @@
 @use '../abstracts' as *;
 
-.mission {
-  background: $color-bg;
-  padding-block: 7rem;
-  text-align: center;
+// "Track Record" — trigger-based reveal (not scroll-scrubbed, so it plays at a
+// smooth eased pace regardless of scroll speed). Starts as a white panel with
+// a dark label; once in view it inverts to black + white, the label fades out
+// and the lead + stats stagger in while the numbers count up.
+.impact {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: #fff;
+  transition: background-color 0.8s ease;
 
-  @include respond(sm) {
-    padding-block: 10rem;
+  &.is-active {
+    background-color: #0b0b0c;
   }
 
-  &__inner {
-    max-width: 56rem;
-    margin-inline: auto;
+  &__stage {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 100%;
+  }
+
+  // Oversized label: inverts color, then fades out (delayed) as content enters.
+  &__label {
+    position: absolute;
+    margin: 0;
+    text-align: center;
+    white-space: pre-line;
+    font-size: clamp(3.5rem, 15vw, 12rem);
+    font-weight: 800;
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+    color: #111;
+    pointer-events: none;
+    transition: color 0.8s ease, opacity 0.6s ease 0.7s;
+  }
+
+  &.is-active &__label {
+    color: #fff;
+    opacity: 0;
+  }
+
+  &__content {
+    position: relative;
+    width: 100%;
+    max-width: 70rem;
     padding-inline: $container-pad;
+    text-align: center;
+    color: #fff;
   }
 
-  &__eyebrow {
-    @include eyebrow;
-    margin-bottom: 2rem;
+  // Shared entrance: hidden + nudged down until active. Per-element delays
+  // below stagger the reveal.
+  &__lead,
+  &__note,
+  &__stat {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
   }
 
-  &__statement {
-    font-size: 1.5rem;
-    font-weight: 500;
-    line-height: 1.3;
+  &.is-active &__lead {
+    opacity: 1;
+    transform: none;
+    transition-delay: 0.9s;
+  }
+
+  &.is-active &__note {
+    opacity: 1;
+    transform: none;
+    transition-delay: 1.05s;
+  }
+
+  &.is-active &__stat {
+    opacity: 1;
+    transform: none;
+    // Stagger by index (set via --i inline).
+    transition-delay: calc(1.2s + var(--i) * 0.15s);
+  }
+
+  &__lead {
+    margin: 0 auto;
+    max-width: 48rem;
+    white-space: pre-line;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.5;
     letter-spacing: -0.02em;
-    color: $color-text;
 
     @include respond(sm) {
-      font-size: 2.25rem;
+      font-size: 1.75rem;
     }
   }
 
-  &__desc {
-    max-width: 42rem;
-    margin: 2rem auto 0;
-    font-size: 1rem;
-    line-height: 1.7;
-    color: $color-muted;
+  &__note {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  &__stats {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin-top: 4rem;
 
     @include respond(sm) {
-      font-size: 1.125rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 5rem;
     }
+  }
+
+  &__value {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 0;
+    color: $color-accent;
+    font-size: clamp(4rem, 10vw, 7rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  &__unit {
+    margin-top: 0.35em;
+    margin-left: 0.05em;
+    font-size: 0.4em;
+    font-weight: 700;
+  }
+
+  &__stat-label {
+    margin: 1rem 0 0;
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  &__stat-note {
+    margin-top: 0.4rem;
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.45);
+    font-weight: 700;
+
   }
 }

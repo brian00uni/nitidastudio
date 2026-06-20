@@ -1,10 +1,12 @@
 import Header from '../components/Header'
 import Hero from '../components/Hero'
+import Marquee from '../components/Marquee'
 import Mission from '../components/Mission'
-import Technology from '../components/Technology'
-import Features from '../components/Features'
+import About from '../components/About'
+// import Skills from '../components/Skills'
+import Projects from '../components/Projects'
 import Stats from '../components/Stats'
-import News from '../components/News'
+import Nitida from '../components/Nitida'
 import Contact from '../components/Contact'
 import Footer from '../components/Footer'
 
@@ -14,12 +16,15 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <Marquee />
         <Mission />
-        <Technology />
-        <Features />
+        <About />
         <Stats />
-        <News />
+        {/* <Skills /> */}
+        <Projects />
+        
         <Contact />
+        <Nitida />
       </main>
       <Footer />
     </div>

@@ -1,0 +1,247 @@
+@use '../abstracts' as *;
+
+// Swift = snappy spring easing for card + chip motion
+$swift: 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+
+// Monochrome section: black base with glassmorphism floating cards in a
+// clean black-and-white palette.
+.skills {
+  position: relative;
+  overflow: hidden;
+  background: #000;
+  // @include section-padding;
+  padding-block: 6rem;
+
+  // Subtle white glows for depth — no color, just black-and-white.
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(42rem 32rem at 80% 15%, rgba(255, 255, 255, 0.08), transparent 60%),
+      radial-gradient(40rem 34rem at 55% 100%, rgba(255, 255, 255, 0.05), transparent 60%);
+  }
+
+  &__inner {
+    @include container;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__desc {
+    margin-top: 1rem;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  // Heading row holds the section title and the slider arrows
+  &__head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+
+    .section-head {
+      margin-bottom: 0;
+    }
+
+    .section-head__eyebrow {
+      color: rgba(255, 255, 255, 0.55);
+    }
+
+    .section-head__title {
+      color: #fff;
+      font-size: clamp(2.75rem, 9vw, 4rem);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  &__nav-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: $radius-full;
+    backdrop-filter: blur(8px);
+    transition: background $swift, color $swift, border-color $swift,
+      transform $swift;
+
+    &:hover {
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    &:active {
+      transform: scale(0.92);
+    }
+  }
+
+  // Full-bleed slider: break out of the container to span the viewport
+  // (left 0 → right 0, 100vw) so cards run edge to edge like the reference.
+  &__track {
+    display: flex;
+    align-items: stretch; // equal-height cards
+    gap: 1.25rem;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 0;
+    padding: 1rem 0 1.5rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; // Firefox
+
+    &::-webkit-scrollbar {
+      display: none; // Chrome/Safari
+    }
+  }
+
+  // Glassmorphism card: frosted, translucent, soft glow
+  &__card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    // 1 card (mobile) → 2 (sm) → 3 per view (lg), gap-aware
+    flex: 0 0 calc(100% - 1.25rem);
+    scroll-snap-align: start;
+    padding: 1.75rem;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: $radius;
+    box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    transition: transform $swift, box-shadow $swift, border-color $swift,
+      background $swift;
+    will-change: transform;
+
+    @include respond(sm) {
+      flex-basis: calc((100% - 1.25rem) / 2);
+    }
+
+    @include respond(lg) {
+      flex-basis: calc((100% - 2 * 1.25rem) / 3);
+    }
+
+    &:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255, 255, 255, 0.28);
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6);
+    }
+  }
+
+  &__card-no {
+    font-family: $font-mono;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.4);
+    transition: color $swift;
+
+    .skills__card:hover & {
+      color: #fff;
+    }
+  }
+
+  // Label + divider rule beneath it, like the reference cards
+  &__card-label {
+    display: block;
+    margin: 0.5rem 0 0;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    font-size: 1.0625rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: #fff;
+  }
+
+  &__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+  }
+
+  &__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.85rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.75);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: $radius-full;
+    transition: background $swift, color $swift, border-color $swift,
+      transform $swift;
+
+    &:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.3);
+      color: #fff;
+    }
+  }
+
+  &__chip-icon {
+    display: inline-flex;
+    font-size: 1.05rem;
+    line-height: 1;
+    color: #fff;
+
+    svg {
+      width: 1em;
+      height: 1em;
+      fill: currentColor;
+    }
+  }
+
+  &__chip-label {
+    line-height: 1;
+  }
+
+  &__dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  &__dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    padding: 0;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: $radius-full;
+    transition: width $swift, background $swift;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    &.is-active {
+      width: 1.5rem;
+      background: #fff;
+    }
+  }
+}

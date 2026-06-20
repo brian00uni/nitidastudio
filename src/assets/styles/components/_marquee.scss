@@ -1,0 +1,190 @@
+@use '../abstracts' as *;
+
+// Light "logo strip" ticker: plain icon + word items (no boxes) scroll in
+// opposite directions on a white background, with a flowing wave on top.
+.marquee {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  // Leave room at the top for the colored wave band above the items.
+  padding-top: 7rem;
+  padding-bottom: 2rem;
+
+  // background-color: $color-bg;
+  color: $color-text;
+
+  @include respond(sm) {
+    padding-top: 9.5rem;
+    margin-top: -7rem;
+  }
+
+  // Colored band pinned to the top edge; its bottom is cut by white waves.
+  &__wave {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6rem;
+    overflow: hidden;
+    pointer-events: none;
+    // background: linear-gradient(110deg, #178bf5 0%, #3a86ff 45%, #00d4ac 100%);
+
+    @include respond(sm) {
+      height: 8rem;
+    }
+  }
+
+  // Each layer is two tiles wide; sliding by half loops seamlessly. White
+  // fill + per-variant opacity/height/speed/direction gives watery depth.
+  &__wave-layer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    width: 200%;
+
+    svg {
+      flex: 0 0 50%;
+      width: 50%;
+      height: 100%;
+      display: block;
+    }
+
+    // Back: tallest (wave line highest), faintest, quickest.
+    &--back {
+      height: 100%;
+      opacity: 0.4;
+      animation: marquee-wave 8s linear infinite;
+    }
+
+    // Mid: medium height/opacity, drifting the other way.
+    &--mid {
+      height: 86%;
+      opacity: 0.65;
+      animation: marquee-wave 13s linear infinite reverse;
+    }
+
+    // Front: lowest wave line, fully white — blends into the items area.
+    &--front {
+      height: 70%;
+      opacity: 1;
+      animation: marquee-wave 18s linear infinite;
+    }
+  }
+
+  // Fade both edges into the white background so items slip in/out softly.
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    inset-block: 0;
+    width: clamp(3rem, 12%, 10rem);
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  &::before {
+    left: 0;
+    // background: linear-gradient(90deg, $color-bg, transparent);
+  }
+
+  &::after {
+    right: 0;
+    // background: linear-gradient(270deg, $color-bg, transparent);
+  }
+
+  &__row {
+    display: flex;
+    width: max-content;
+
+    &--forward {
+      animation: marquee-scroll 60s linear infinite;
+    }
+
+    &--reverse {
+      animation: marquee-scroll 54s linear infinite reverse;
+    }
+  }
+
+  &:hover &__row {
+    animation-play-state: paused;
+  }
+
+  &__track {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 2.25rem;
+    padding-right: 2.25rem;
+
+    @include respond(sm) {
+      gap: 3rem;
+      padding-right: 3rem;
+    }
+  }
+
+  // Bare word + icon — no box, no background.
+  &__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    color: $color-text-soft;
+    transition: color $transition;
+
+    @include respond(sm) {
+      font-size: 1.125rem;
+    }
+
+    &:hover {
+      color: $color-accent;
+    }
+  }
+
+  &__icon {
+    display: inline-flex;
+    font-size: 1.25rem;
+    line-height: 1;
+    color: $color-accent;
+
+    svg {
+      width: 1em;
+      height: 1em;
+      fill: currentColor;
+    }
+  }
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    // Four identical tracks → shift by exactly half (two tracks) to loop.
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-wave {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .marquee__row,
+  .marquee__wave-layer {
+    animation: none;
+  }
+}

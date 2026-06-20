@@ -7,57 +7,135 @@
   justify-content: center;
   min-height: 100svh;
   overflow: hidden;
-  color: #fff;
   text-align: center;
+  color: #fff;
+  // Blue gradient base + a crisp diagonal lighter facet (top-right),
+  // sampled from the reference banner.
+  background:
+    linear-gradient(112deg, transparent 56%, rgba(255, 255, 255, 0.1) 56%),
+    linear-gradient(120deg, #178bf5 0%, #2e93f6 55%, #46a2f8 100%);
 
-  &__media {
+  // Full-bleed Lottie overlay sitting on top of the gradient background but
+  // behind the content. The gradient (background color) shows through any
+  // transparency in the animation.
+  &__bg {
     position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    // inset: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    pointer-events: none;
   }
 
-  &__overlay {
+  &__bg-lottie {
+    width: 500px;
+    height: 500px;
+    // Continuously cycle the hue so the Lottie colors shift in real time.
+    animation: hero-bg-hue 12s linear infinite;
+
+    canvas {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover;
+    }
+  }
+
+  // Large faint concentric circle (bottom-right) with rings rippling outward.
+  &__circle {
     position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.6),
-      rgba(0, 0, 0, 0.4),
-      rgba(0, 0, 0, 0.7)
-    );
+    right: -8rem;
+    bottom: -10rem;
+    width: 32rem;
+    height: 32rem;
+    border-radius: $radius-full;
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12),
+      0 0 0 4rem rgba(255, 255, 255, 0.04);
+    pointer-events: none;
+
+    // Two rings expand and fade, staggered, so a wave radiates continuously.
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: $radius-full;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      animation: hero-ripple 4.5s ease-out infinite;
+    }
+
+    &::after {
+      animation-delay: 2.25s;
+    }
   }
 
   &__inner {
     position: relative;
     z-index: 10;
+    width: 100%;
     max-width: 64rem;
     padding-inline: $container-pad;
   }
 
   &__eyebrow {
     @include eyebrow;
-    color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 1.5rem;
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 2rem;
   }
 
-  &__title {
+  &__headline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4em;
     font-size: 2.25rem;
-    line-height: 1.1;
+    font-weight: 700;
+    line-height: 1.2;
     letter-spacing: -0.02em;
-    white-space: pre-line;
 
     @include respond(sm) {
       font-size: 3.75rem;
     }
   }
 
+  &__static {
+    white-space: nowrap;
+  }
+
+  // White pill — width follows the word (variable); the height is fixed
+  // so only the word slides vertically inside it.
+  &__pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    min-width: 2.5em;
+    height: 1.5em;
+    padding: 0.15em 0.7em;
+    overflow: hidden;
+    border-radius: $radius-full;
+    background: #fff;
+    color: $color-accent-dark;
+    box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.3);
+    vertical-align: middle;
+    // Smoothly resize as the word length changes
+    transition: width 0.55s cubic-bezier(0.65, 0, 0.35, 1);
+    will-change: width;
+  }
+
+  // Rotating word slides up from under the pill on each change
+  &__pill-word {
+    display: inline-block;
+    white-space: nowrap;
+    animation: hero-word-up 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
   &__subtitle {
-    max-width: 42rem;
-    margin: 1.5rem auto 0;
+    max-width: 38rem;
+    margin: 2rem auto 0;
     font-size: 1rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.82);
 
     @include respond(sm) {
       font-size: 1.125rem;
@@ -70,21 +148,46 @@
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    margin-top: 2.5rem;
+    margin-top: 2.75rem;
 
     @include respond(sm) {
       flex-direction: row;
     }
   }
 
-  &__play {
-    display: grid;
-    place-items: center;
-    width: 1.25rem;
-    height: 1.25rem;
-    font-size: 0.6rem;
+  // Outline pill buttons with arrow
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    min-width: 13rem;
+    padding: 0.9rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 800;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: $radius-full;
-    background: rgba(255, 255, 255, 0.2);
+    transition: background $transition, border-color $transition,
+      transform 0.15s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: #fff;
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+
+  &__arrow {
+    font-size: 1.125rem;
+    transition: transform $transition;
+  }
+
+  &__btn:hover &__arrow {
+    transform: translateX(4px);
   }
 
   &__scroll {
@@ -100,12 +203,57 @@
   }
 }
 
+@keyframes hero-bg-hue {
+  from {
+    filter: hue-rotate(0deg);
+  }
+
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
+
+// Ring radiating outward from the bottom-right backdrop circle.
+@keyframes hero-ripple {
+  0% {
+    transform: scale(0.92);
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes hero-word-up {
+  from {
+    opacity: 0;
+    transform: translateY(120%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes hero-bounce {
+
   0%,
   100% {
     transform: translate(-50%, 0);
   }
+
   50% {
     transform: translate(-50%, 8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__circle::before,
+  .hero__circle::after {
+    animation: none;
+    opacity: 0;
   }
 }

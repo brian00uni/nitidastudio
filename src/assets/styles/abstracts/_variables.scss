@@ -11,14 +11,14 @@ $color-border: #e4e4e7; // zinc-200
 $color-dark: #18181b; // zinc-900
 $color-darker: #09090b; // zinc-950
 
-$color-accent: #7c3aed; // violet-600
-$color-accent-dark: #6d28d9; // violet-700
-$color-accent-soft: #f5f3ff; // violet-50
-$color-accent-faint: #ddd6fe; // violet-200/300
+$color-accent: #178bf5; // primary blue
+$color-accent-dark: #0e72d6; // darker blue
+$color-accent-soft: #e9f4fe; // blue-50
+$color-accent-faint: #b6d8fb; // blue-200/300
 
 // Typography
-$font-sans: 'Pretendard', system-ui, -apple-system, 'Segoe UI', Roboto,
-  'Helvetica Neue', sans-serif;
+$font-sans: 'SUIT Variable', 'Pretendard Variable', system-ui, -apple-system,
+  'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
 $font-mono: ui-monospace, 'SFMono-Regular', Consolas, monospace;
 
 // Layout

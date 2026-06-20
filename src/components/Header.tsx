@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { nav } from '../data/content'
+import logo from '../assets/nitida-studio-logo.svg'
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
@@ -15,8 +16,8 @@ export default function Header() {
   return (
     <header className={`header${scrolled ? ' header--scrolled' : ''}`}>
       <div className="header__inner">
-        <a href="#top" className="header__brand">
-          {nav.brand}
+        <a href="#top" className="header__brand" aria-label={nav.brand}>
+          <img src={logo} alt={nav.brand} className="header__logo" />
         </a>
 
         <nav className="header__nav">
@@ -27,7 +28,7 @@ export default function Header() {
           ))}
         </nav>
 
-        <div className="header__actions">
+        {/* <div className="header__actions">
           <div className="header__lang">
             {nav.languages.map((lng, i) => (
               <span key={lng} style={{ display: 'flex', gap: '0.35rem' }}>
@@ -45,7 +46,7 @@ export default function Header() {
             <span />
             <span />
           </button>
-        </div>
+        </div> */}
       </div>
 
       {open && (

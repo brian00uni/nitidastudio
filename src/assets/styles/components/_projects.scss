@@ -1,0 +1,382 @@
+@use '../abstracts' as *;
+
+.projects {
+  background: $color-bg;
+  @include section-padding;
+
+
+
+  &__inner {
+    @include container;
+
+    .section-head {
+      max-width: max-content;
+
+      &__title {
+        font-size: clamp(2.75rem, 9vw, 6rem);
+        font-weight: 800;
+        line-height: 0.95;
+        letter-spacing: -0.03em;
+        color: #18181b;
+      }
+    }
+  }
+
+  // Card grid — each card shows only the CI(brand) + title.
+  &__grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+
+    @include respond(sm) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include respond(lg) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__card {
+    overflow: hidden;
+    border: 1px solid $color-border;
+    border-radius: $radius;
+    background: $color-bg;
+    transition: transform $transition, box-shadow $transition,
+      border-color $transition;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: $shadow-md;
+      border-color: $color-accent-faint;
+    }
+  }
+
+  &__card-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+    text-align: left;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    color: inherit;
+    font: inherit;
+
+    &:focus-visible {
+      outline: 2px solid $color-accent;
+      outline-offset: 2px;
+      border-radius: $radius;
+    }
+  }
+
+  // CI / brand band — fixed 100px height, full-bleed to the card's
+  // top/left/right edges. Each logo is a background image, centered &
+  // contained; multiple logos split the row evenly.
+  &__ci {
+    align-self: stretch;
+    margin: -2rem -2rem 0;
+    display: flex;
+    height: 100px;
+    background: #fff;
+  }
+
+  &__ci-img {
+    flex: 1;
+    min-width: 0;
+    align-self: stretch;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  &__ci-text {
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: $color-accent;
+  }
+
+  &__name {
+    flex: 1;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+    color: $color-text;
+  }
+
+  &__more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: $color-muted;
+    transition: color $transition, gap $transition;
+  }
+
+  &__card:hover &__more {
+    color: $color-accent;
+    gap: 0.65rem;
+  }
+}
+
+
+
+// ── Modal ──────────────────────────────────────────────────────────────
+.projects-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(9, 9, 11, 0.55);
+  backdrop-filter: blur(4px);
+  animation: projects-modal-fade $transition;
+
+  &__panel {
+    position: relative;
+    width: 100%;
+    max-width: 40rem;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 2.5rem;
+    background: $color-bg;
+    border-radius: $radius;
+    box-shadow: $shadow-lg;
+    animation: projects-modal-rise $transition;
+
+    @include respond(sm) {
+      padding: 3rem;
+    }
+  }
+
+  &__close {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    font-size: 1rem;
+    color: $color-muted;
+    background: $color-surface;
+    border: 1px solid $color-border;
+    border-radius: $radius-full;
+    cursor: pointer;
+    transition: color $transition, background $transition;
+
+    &:hover {
+      color: $color-text;
+      background: $color-border;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-accent;
+      outline-offset: 2px;
+    }
+  }
+
+  // CI / brand band — full-bleed to the panel's top/left/right edges, like
+  // the card. Each logo is a centered, contained background; 2 logos split.
+  &__ci {
+    display: flex;
+    height: 140px;
+    margin: -2.5rem -2.5rem 1.75rem;
+    background: #fff;
+
+    @include respond(sm) {
+      margin: -3rem -3rem 2rem;
+    }
+  }
+
+  &__ci-img {
+    flex: 1;
+    min-width: 0;
+    align-self: stretch;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  &__ci-text {
+    font-size: 1.375rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: $color-accent;
+  }
+
+  &__title {
+    font-size: 1.375rem;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+    color: $color-text;
+
+    @include respond(sm) {
+      font-size: 1.625rem;
+    }
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.75rem;
+    font-size: 0.8125rem;
+    color: $color-muted;
+  }
+
+  &__meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  &__dot {
+    color: $color-faint;
+  }
+
+  &__summary {
+    margin-top: 1.5rem;
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    color: $color-text-soft;
+
+    @include respond(sm) {
+      font-size: 1rem;
+    }
+  }
+
+  &__stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  &__tech {
+    padding: 0.3rem 0.7rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: $color-accent-dark;
+    background: $color-accent-soft;
+    border-radius: $radius-sm;
+  }
+
+  // Responsibilities — 수행 업무 및 역할
+  &__roles {
+    margin-top: 1.75rem;
+  }
+
+  &__roles-label {
+    margin-bottom: 0.9rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: $color-text;
+  }
+
+  &__roles-list {
+    display: grid;
+    gap: 0.65rem;
+
+    li {
+      position: relative;
+      padding-left: 1.1rem;
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      color: $color-text-soft;
+
+      &::before {
+        content: '–';
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: $color-muted;
+      }
+    }
+  }
+
+  // Achievements — emphasized panel so the outcomes stand out
+  &__achievements {
+    margin-top: 2rem;
+    padding: 1.75rem;
+    background: $color-accent-soft;
+    border: 1px solid $color-accent-faint;
+    border-radius: $radius-sm;
+
+    @include respond(sm) {
+      padding: 2rem;
+    }
+  }
+
+  &__achievements-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 1.1rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: $color-accent-dark;
+
+    &::before {
+      content: '';
+      width: 1.25rem;
+      height: 2px;
+      background: $color-accent;
+    }
+  }
+
+  &__highlights {
+    display: grid;
+    gap: 1rem;
+
+    li {
+      position: relative;
+      padding-left: 1.75rem;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      line-height: 1.6;
+      color: $color-text;
+
+      &::before {
+        content: '✦';
+        position: absolute;
+        left: 0;
+        top: 0.1em;
+        font-size: 0.875rem;
+        color: $color-accent;
+      }
+
+      @include respond(sm) {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+@keyframes projects-modal-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes projects-modal-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
