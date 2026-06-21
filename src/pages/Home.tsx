@@ -9,6 +9,7 @@ import Stats from '../components/Stats'
 // import Nitida from '../components/Nitida'
 import Contact from '../components/Contact'
 import Footer from '../components/Footer'
+import ScrollTop from '../components/ScrollTop'
 
 export default function Home() {
   return (
@@ -27,6 +28,7 @@ export default function Home() {
         {/* <Nitida /> */}
       </main>
       <Footer />
+      <ScrollTop />
     </div>
   )
 }

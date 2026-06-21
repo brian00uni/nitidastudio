@@ -1,0 +1,51 @@
+@use '../abstracts' as *;
+
+// Floating back-to-top button, fixed at the bottom-right. Hidden (faded out
+// and lifted) until the page scrolls past the threshold, then fades in.
+.scroll-top {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  font-size: 1.0625rem;
+  color: $color-text;
+  background: #fff;
+  border: 1px solid $color-border;
+  border-radius: $radius-full;
+  box-shadow: $shadow-md;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity $transition, transform $transition, visibility $transition,
+    border-color $transition, box-shadow $transition;
+
+  &.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  &:hover {
+    border-color: $color-faint;
+    box-shadow: $shadow-lg;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-accent;
+    outline-offset: 2px;
+  }
+
+  @include respond(sm) {
+    right: 2rem;
+    bottom: 2rem;
+    width: 3.25rem;
+    height: 3.25rem;
+    font-size: 1.125rem;
+  }
+}
