@@ -135,6 +135,9 @@ function ProjectModal({
           )
         })()}
 
+
+        <div className='modal-detail-scroll'>
+
         {project.summary && (
           <p className="projects-modal__summary">{project.summary}</p>
         )}
@@ -169,7 +172,8 @@ function ProjectModal({
               ))}
             </ul>
           </div>
-        )}
+          )}
+          </div>
       </div>
     </div>,
     document.body,

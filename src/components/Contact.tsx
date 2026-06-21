@@ -15,7 +15,12 @@ export default function Contact() {
           {contact.description}
         </Reveal>
         <Reveal delay={300} replay>
-          <a href={contact.cta.href} className="btn btn--light contact__cta">
+          <a
+            href={contact.cta.href}
+            className="btn btn--light contact__cta"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             {contact.cta.label}
           </a>
         </Reveal>

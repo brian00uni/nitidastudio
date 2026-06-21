@@ -143,10 +143,12 @@
 
   &__panel {
     position: relative;
+    display: flex;
+    flex-direction: column;
     width: 100%;
     max-width: 40rem;
     max-height: 85vh;
-    overflow-y: auto;
+    overflow: hidden;
     padding: 2.5rem;
     background: $color-bg;
     border-radius: $radius;
@@ -378,5 +380,76 @@
   from {
     opacity: 0;
     transform: translateY(16px);
+  }
+}
+
+.projects-modal__panel {
+
+  // padding-right: 0;
+  .projects-modal__summary {
+    margin-top: 1rem;
+  }
+}
+
+.modal-detail-scroll {
+  // Fill the panel's remaining height and scroll only this region;
+  // min-height: 0 lets a flex child shrink below its content size.
+  flex: 1;
+  min-height: 0;
+  margin-top: 0.75rem;
+  overflow-y: auto;
+
+
+  // Keep the scrollbar clear of the text and align the gutter with the
+  // panel padding so scrolled content doesn't touch the right edge.
+  margin-right: -1rem;
+  padding-right: 1rem;
+
+  // Breathing room so content isn't flush against the scroll edges (and
+  // sits a little clear of the fade overlays).
+  // padding-top: 0.75rem;
+  // padding-bottom: 0.75rem;
+
+  // Fade hints at the scroll edges: sticky pseudo-elements pin to the top
+  // and bottom of the scroll viewport, white → transparent over ~30px.
+  // Negative margins keep them out of the layout flow so they overlay the
+  // content instead of pushing it.
+  &::before,
+  &::after {
+    content: '';
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    display: block;
+    height: 30px;
+    pointer-events: none;
+  }
+
+  &::before {
+    top: 0;
+    margin-bottom: -30px;
+    background: linear-gradient(to bottom, $color-bg, rgba(255, 255, 255, 0));
+  }
+
+  &::after {
+    bottom: 0;
+    margin-top: -30px;
+    background: linear-gradient(to top, $color-bg, rgba(255, 255, 255, 0));
+  }
+
+  // White scrollbar track so the gutter matches the panel background.
+  scrollbar-color: $color-border #fff;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #fff;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $color-border;
+    border-radius: $radius-full;
   }
 }

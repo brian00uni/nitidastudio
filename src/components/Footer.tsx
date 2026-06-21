@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div className="footer__inner">
-        <div className="footer__top">
+        {/* <div className="footer__top">
           <div>
             <div className="footer__brand">{footer.brand}</div>
             <p className="footer__tagline">{footer.tagline}</p>
@@ -22,9 +22,10 @@ export default function Footer() {
               </ul>
             </div>
           ))}
-        </div>
+        </div> */}
 
-        <div className="footer__bottom">{footer.copyright}</div>
+       
+        <div className="footer__bottom">NITIDA Studio {footer.copyright} </div>
       </div>
     </footer>
   )

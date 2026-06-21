@@ -16,7 +16,7 @@ export default function Nitida() {
         <div className="nitida__essence">
           {/* <p className="nitida__eyebrow">{nitida.eyebrow}</p> */}
           <h2 className="nitida__tagline">{nitida.tagline}</h2>
-          <p className="nitida__lead">{nitida.lead}</p>
+          {/* <p className="nitida__lead">{nitida.lead}</p> */}
         </div>
 
         <div className="nitida__values">

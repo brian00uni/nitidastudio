@@ -34,18 +34,24 @@ import {
 } from 'react-icons/si';
 
 // Project CI / brand logos (src/assets/logo). Vite returns a hashed URL string.
-import projLogo01 from '../assets/logo/proj-logo-01.png';
-import projLogo02 from '../assets/logo/proj-logo-02.png';
-import projLogo02_1 from '../assets/logo/proj-logo-02-1.png';
-import projLogo03 from '../assets/logo/proj-logo-03.jpg';
-import projLogo04 from '../assets/logo/proj-logo-04.png';
-import projLogo05 from '../assets/logo/proj-logo-05.png';
+import projLogo01 from '../assets/logo/proj-01.png';
+import projLogo02 from '../assets/logo/proj-02.png';
+import projLogo02_1 from '../assets/logo/proj-02-1.png';
+import projLogo03 from '../assets/logo/proj-03.png';
+import projLogo04 from '../assets/logo/proj-04.png';
+import projLogo05 from '../assets/logo/proj-05.png';
+import projLogo06 from '../assets/logo/proj-06.png';
+import projLogo07 from '../assets/logo/proj-07.png';
+import projLogo08 from '../assets/logo/proj-08.png';
+import projLogo09 from '../assets/logo/proj-09.png';
+import projLogo10 from '../assets/logo/proj-10.png';
 
 export const nav = {
   brand: 'Nitida.studio ',
   links: [
+  { label: 'Track Record', href: '#mission' },
     { label: 'What I Do', href: '#about' },
-    { label: 'Skills', href: '#skills' },
+    // { label: 'Skills', href: '#skills' },
     { label: 'Projects', href: '#projects' },
     { label: 'Contact', href: '#contact' },
   ],
@@ -121,7 +127,7 @@ export const mission = {
       note: '년 단위 실무 경험',
     },
     {
-      value: '35',
+      value: '50',
       unit: '+',
       label: '수행 프로젝트',
       note: '대기업 · 관공서 · 병원 · 스타트업',
@@ -316,15 +322,20 @@ export const projects: {
       team: '8명',
       role: 'UX 퍼블리셔',
       stack: [
-        'Vue2', 'Vue3', 'TypeScript', 'Buefy UI', 'SCSS', 'HTML5', 'CSS3', 'Web Standards', 'Responsive Web', 'Cross-Browsing'
+        'Vue2', 'Vue3', 'TypeScript', 'Buefy UI', 'Sass', 'HTML5', 'CSS3', 'Web Standards', 'Responsive Web', 'Cross-Browsing'
       ],
-      summary:
-        '삼성화재 애니핏 헬스케어 서비스 신규 개발의 UI/UX 퍼블리싱. 검진 파트는 Vue2, 케어서비스 파트는 Vue3 중심으로 화면을 개발하고, Bulma 기반 Buefy UI로 구현했습니다.',
+      responsibilities: [
+        '삼성화재 애니핏 헬스케어 서비스 신규 개발에 따른 UI/UX 퍼블리싱 담당',
+        '검진 파트는 Vue2, 케어서비스 파트는 Vue3 중심으로 화면 개발',
+        'Bulma 기반 Buefy UI 컴포넌트 라이브러리를 활용한 화면 구현',
+        '반응형 웹 · 웹 표준 · 크로스브라우징을 고려한 UI 개발 수행',
+      ],
       highlights: [
         'Vue + TypeScript 환경에서 재사용 가능한 UI 컴포넌트를 직접 설계 및 제작',
         '서비스 전반의 UI 일관성 확보 및 유지보수 효율 개선',
-        'Vue2 검진 파트와 Vue3 케어서비스 파트를 병행 개발하며 버전별 개발 방식 이해 및 적용 역량 강화',
+        'Vue2 기반 검진 파트와 Vue3 기반 케어서비스 파트를 병행 개발하며 버전별 개발 방식 이해 및 적용 역량 강화',
       ],
+      contribution: '100%',
     },
     {
       no: '02',
@@ -336,15 +347,21 @@ export const projects: {
       team: '10명',
       role: 'UX 퍼블리셔',
       stack: [
-        'Vue2', 'Vue3', 'TypeScript', 'Buefy UI', 'SCSS', 'HTML5', 'CSS3', 'Web Standards', 'Responsive Web', 'Cross-Browsing'
+        'Vue2', 'Vue3', 'TypeScript', 'Buefy UI', 'Sass', 'HTML5', 'CSS3', 'Web Standards', 'Responsive Web', 'Cross-Browsing'
       ],
-      summary:
-        'GC케어 운영 및 AIA 헬스케어 신규 개발의 UI/UX 퍼블리싱. 검진 서비스는 Vue2, AIA 서비스는 Vue3 중심으로 개발하며 AIA QI 디자인 시스템을 적용했습니다.',
+      responsibilities: [
+        'GC케어 운영 및 AIA 헬스케어 신규 개발에 따른 UI/UX 퍼블리싱 담당',
+        '검진 서비스는 Vue2, AIA 서비스는 Vue3 중심으로 화면 개발',
+        'Bulma 기반 Buefy UI 컴포넌트 라이브러리를 활용한 화면 구현',
+        'AIA QI 디자인 시스템 기반 UI 개발 및 UX팀 커뮤니케이션 수행',
+      ],
       highlights: [
         'Vue + TypeScript 환경에서 다양한 재사용 컴포넌트를 직접 설계 및 제작',
-        'AIA QI 디자인 시스템을 적용해 디자인 일관성 확보, 현업·AIA UX팀과 긴밀히 소통하여 요구사항 정확히 반영',
+        'AIA QI 디자인 시스템을 서비스 화면에 적용하며 디자인 일관성 확보',
+        '현업 담당자 및 AIA UX팀과 긴밀히 소통하여 요구사항을 정확히 반영',
         '고령층 · 저시력자를 고려한 큰글씨 모드를 선제적으로 검토하고 성공적으로 구현',
       ],
+      contribution: '100%',
     },
     {
       no: '03',
@@ -366,10 +383,12 @@ export const projects: {
         'CooperVision 시험 착용 프로그램 모바일 프로젝트 참여',
       ],
       highlights: [
-        '대시보드형 콘솔 UI 구현 경험으로 복잡한 데이터 구조를 시각적으로 표현하는 역량 강화',
-        '약 10년의 장기 운영 프로젝트를 통해 유지보수를 고려한 컴포넌트 설계 역량 축적',
-        'Angular · React 등 다양한 프레임워크 환경에 유연하게 적응하며 폭넓은 실무 경험 확보',
+        '장기 운영 프로젝트를 수행하며 유지보수 효율을 고려한 컴포넌트 설계 역량 강화',
+        '대시보드형 콘솔 UI를 포함한 다수의 BIZ 프로젝트 개발 경험 축적',
+        '복잡한 데이터 구조를 시각적으로 표현하는 UI 개발 역량 강화',
+        '운영 서비스의 안정성과 확장성을 고려한 화면 개발 및 개선 수행',
       ],
+      contribution: '100%',
     },
     {
       no: '04',
@@ -423,72 +442,121 @@ export const projects: {
     },
     {
       no: '06',
-      brand: 'PEN.UP',
+      brand: 'PEN.UP', 
+      logos: [projLogo06],
       name: '삼성전자 PEN.UP 신규 기능 개발',
       org: '(주)포인테크',
       period: '2014.04 ~ 2014.06',
       team: '약 20명',
       role: 'UX 퍼블리셔',
       stack: [
-        'HTML5', 'CSS3', 'JavaScript', 'jQuery', 'Responsive Web', 'Mobile Web'
+        'JavaScript', 'jQuery', 'HTML5', 'CSS3', 'Web Standards', 'Responsive Web', 'Cross-Browsing'
       ],
-      summary:
-        '삼성 PEN.UP 앱의 신규 기능 개발 UI/UX 퍼블리싱. 모바일 앱 특성에 맞게 디바이스별 해상도에 대응하는 반응형 UI 개발이 주 업무였습니다.',
+      responsibilities: [
+        '삼성 PEN.UP 앱 신규 기능 개발에 따른 UI/UX 퍼블리싱 담당',
+        '모바일 앱 특성에 맞춘 디바이스별 해상도 대응 화면 개발',
+        '반응형 웹 · 웹 표준 · 크로스브라우징을 고려한 UI 구현',
+        'jQuery 및 오픈소스 API를 활용한 인터랙티브 효과 구현',
+      ],
       highlights: [
-        '다양한 디바이스 해상도 및 특성에 맞춘 반응형 UI 구현으로 모바일 환경에서의 퍼블리싱 역량 강화',
+        '다양한 디바이스 해상도와 모바일 환경에 대응하는 반응형 UI 구현 경험 축적',
+        '모바일 앱 특성에 맞춘 화면 구조 및 인터랙션 구현 역량 강화',
+        '디바이스별 UI 대응을 통해 모바일 퍼블리싱 실무 역량 향상',
       ],
+      contribution: '100%',
     },
     {
       no: '07',
       brand: 'EBS',
+      logos: [projLogo07],
       name: 'EBS MATH 개선사업',
       org: '(주)온라인파워스',
       period: '2013.12 ~ 2014.04 (약 4개월)',
       role: 'UX 퍼블리셔 · 과장',
       stack: [
-        'JSP', 'jQuery', 'Cross-Browsing', 'Responsive Web', 'Mobile Web'
+        'JavaScript', 'jQuery', 'HTML5', 'CSS3', 'Web Standards', 'Responsive Web', 'Cross-Browsing'
       ],
-      summary:
-        '크로스브라우징 · 반응형 · 모바일 웹 대응과 JSP · jQuery, 오픈소스 API를 활용한 인터랙티브 효과 구현을 담당했습니다.',
+      responsibilities: [
+        '신규 기능 개발에 따른 UI/UX 퍼블리싱 담당',
+        '디바이스별 해상도 대응 화면 개발',
+        '반응형 웹 · 웹 표준 · 크로스브라우징을 고려한 UI 구현',
+        'jQuery 및 오픈소스 API를 활용한 인터랙티브 효과 구현',
+      ],
+      highlights: [
+        '다양한 디바이스 해상도와 웹 · 모바일 환경에 대응하는 반응형 UI 구현 경험 축적',
+        '화면 구조 및 인터랙션 구현 역량 강화',
+      ],
+      contribution: '100%',
     },
     {
       no: '08',
       brand: '행복한웹앤미디어',
+      logos: [projLogo08],
       name: '행복한웹앤미디어 웹접근성 개선 프로젝트 및 관련 개발',
       org: '(주)유니트론텍',
       period: '2013.06 ~ 2013.11 (약 6개월)',
       role: 'UX 퍼블리셔 · 과장',
       stack: [
-        'JSP', 'jQuery', 'Cross-Browsing', 'Responsive Web', 'Mobile Web'
+        'jQuery', 'HTML5', 'CSS3', 'Web Standards', 'Responsive Web', 'Cross-Browsing'
       ],
-      summary:
-        '크로스브라우징 · 반응형 · 모바일 웹 대응과 JSP · jQuery, 오픈소스 API를 활용한 인터랙티브 효과 구현을 담당했습니다.',
+      responsibilities: [
+        '신규 기능 개발에 따른 UI/UX 퍼블리싱 담당',
+        '디바이스별 해상도 대응 화면 개발',
+        '반응형 웹 · 웹 표준 · 크로스브라우징을 고려한 UI 구현',
+        'jQuery 및 오픈소스 API를 활용한 인터랙티브 효과 구현',
+      ],
+      highlights: [
+        '다양한 디바이스 해상도와 웹 · 모바일 환경에 대응하는 반응형 UI 구현 경험 축적',
+        '화면 구조 및 인터랙션 구현 역량 강화',
+      ],
+      contribution: '100%',
     },
     {
       no: '09',
       brand: '롯데닷컴',
+      logos: [projLogo09],
       name: '롯데닷컴 홈페이지 퍼블리싱 및 관련 제반 업무',
       org: '한국인터넷프리랜서협회',
       period: '2013.01 ~ 2013.03 (약 2개월)',
       role: 'UX 퍼블리셔 · 과장',
       stack: [
-        'JSP', 'jQuery', 'Cross-Browsing', 'Responsive Web', 'Mobile Web'
+        'JavaScript', 'jQuery', 'HTML5', 'CSS3', 'Web Standards', 'Responsive Web', 'Cross-Browsing'
       ],
-      summary:
-        '크로스브라우징 · 반응형 · 모바일 웹 대응과 JSP · jQuery, 오픈소스 API를 활용한 인터랙티브 효과 구현을 담당했습니다.',
+      responsibilities: [
+        '신규 개발에 따른 UI/UX 퍼블리싱 담당',
+        '디바이스별 해상도 대응 화면 개발',
+        '반응형 웹 · 웹 표준 · 크로스브라우징을 고려한 UI 구현',
+        'jQuery 및 오픈소스 API를 활용한 인터랙티브 효과 구현',
+      ],
+      highlights: [
+        '다양한 해상도와 웹 환경에 대응하는 반응형 UI 구현 경험 축적',
+        '화면 구조 및 인터랙션 구현 역량 강화',
+      ],
+      contribution: '100%',
     },
     {
       no: '10',
       brand: '국립어린이청소년도서관',
+      logos: [projLogo10],
       name: '국립어린이청소년도서관 홈페이지 개발',
       org: '(주)제이넷',
       period: '2012.10 ~ 2012.12 (약 2개월)',
       role: 'UX 퍼블리셔 · 과장',
       stack: [
-        'JSP', 'jQuery', 'Cross-Browsing', 'Responsive Web', 'Mobile Web'
+        'JavaScript', 'jQuery', 'HTML5', 'CSS3', 'Web Standards', 'Responsive Web', 'Cross-Browsing'
       ],
-      summary:
-        '크로스브라우징 · 반응형 · 모바일 웹 대응과 JSP · jQuery, 오픈소스 API를 활용한 인터랙티브 효과 구현을 담당했습니다.',
+      responsibilities: [
+        '신규 개발에 따른 UI/UX 퍼블리싱 담당',
+        '디바이스별 해상도 대응 화면 개발',
+        '반응형 웹 · 웹 표준 · 크로스브라우징을 고려한 UI 구현',
+        'jQuery 및 오픈소스 API를 활용한 인터랙티브 효과 구현',
+      ],
+      highlights: [
+        '웹 표준 및 웹 접근성 품질인증 마크(WA 마크) 획득',
+        '다양한 디바이스 해상도와 웹 환경에 대응하는 반응형 UI 구현 경험 축적',
+        '화면 구조 및 인터랙션 구현 역량 강화',
+      ],
+      contribution: '100%',
     },
   ],
 }
@@ -506,7 +574,7 @@ export const stats = {
 // Brand essence + the three core values (Clarity / Craft / Accessibility).
 export const nitida = {
   // eyebrow: 'Brand Essence',
-  tagline: 'Nitida Studio ',
+  tagline: 'NITIDA Studio ',
   lead: '잡한 것을 또렷하게 만드는 프론트엔드 · UI 퍼블리싱 스튜디오. 모든 결정은 한 단어로 수렴합니다.',
   values: [
     {
@@ -531,8 +599,8 @@ export const contact = {
   eyebrow: 'Get in touch',
   title: '함께 더 나은 결과를 만들고 싶습니다',
   description:
-    '협업 · 채용 문의를 환영합니다. 편하게 연락 주세요.',
-  cta: { label: 'Contact Me', href: 'mailto:hello@example.com' },
+    '문의를 환영합니다. 편하게 연락 주세요.',
+  cta: { label: 'Contact Me', href: 'https://naver.me/GSQzq3AZ' },
 }
 
 export const footer = {
